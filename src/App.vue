@@ -1,28 +1,55 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div>
+        <Header/>
+        <AddTodo v-on:add-todo="addTodo"/>
+        <todos v-bind:todos="todos" v-on:del-todo="deleteToddo"/>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import Header from './components/layout/Header';
+    import AddTodo from './components/AddTodo';
+    import Todos from './components/Todos';
+    import axios from 'axios';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: 'app',
+        components: {
+            Header,
+            AddTodo,
+            Todos
+
+        },
+        data() {
+            return {
+                todos: []
+            }
+
+        },
+        methods: {
+            deleteToddo(id) {
+                axios.delete('http://jsonplaceholder.typicode.com/todos/${id}')
+                    .then(this.todos = this.todos.filter(todo => todo.id !== id))
+
+            },
+            addTodo(newTodo) {
+                const {title, completed} = newTodo;
+                axios.post('http://jsonplaceholder.typicode.com/todos', {
+                    title,
+                    completed
+                })
+                    .then(res => this.todos = [...this.todos, res.data])
+
+            }
+        },
+        created() {
+            axios.get('http://jsonplaceholder.typicode.com/todos?_limit=5')
+                .then(res => this.todos = res.data);
+            // .catch(err => console.log(err))
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
