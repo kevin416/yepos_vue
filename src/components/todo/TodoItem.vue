@@ -2,10 +2,10 @@
     <div class="todo-item" v-bind:class="{'is-complete':todo.completed}">
         <div class="row">
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="materialUnchecked" v-on:change="markComplete">
-                <label class="form-check-label" for="materialUnchecked"></label>
+                <input type="checkbox" class="form-check-input" v-bind:id="'materialUnchecked' + todo.id" v-on:change="markComplete">
+                <label class="form-check-label" v-bind:for="'materialUnchecked' + todo.id"></label>
             </div>
-            {{todo.title}}
+            {{todo.todo}}
 
             <button @click="$emit('del-todo', todo.id)" class="btn btn-danger btn-sm ">x</button>
 
