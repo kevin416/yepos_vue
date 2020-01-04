@@ -30,7 +30,7 @@
 
         },
         created() {
-            axios.get('https://mart.yepos.co.uk/api/cashout/today')
+            axios.get('https://api.pandabuffet.co.uk/api/cashout/today')
                 .then(res => this.cashout = res.data)
                 .then(() => {
                     this.pieChartData = {
