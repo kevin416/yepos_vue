@@ -1,23 +1,22 @@
 <template>
     <div id="app">
-
-        <Cashout/>
-        <hr>
-        <TimeClockToday/>
-
+        <LinkHeader/>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 
-    import Cashout from "./components/admin/Cashout";
-    import TimeClockToday from "./components/admin/TimeClockToday";
+
+
+
+    import LinkHeader from "./components/LinkHeader";
     export default {
         name: "app",
         components: {
+            LinkHeader
 
-            Cashout,
-            TimeClockToday
+
         },
 
     }
