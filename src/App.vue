@@ -1,7 +1,8 @@
 <template>
     <div id="app">
-        <LinkHeader/>
-        <router-view></router-view>
+<!--        <LinkHeader/>-->
+        <Admin/>
+<!--        <router-view></router-view>-->
     </div>
 </template>
 
@@ -10,11 +11,13 @@
 
 
 
-    import LinkHeader from "./components/LinkHeader";
+    // import LinkHeader from "./components/LinkHeader";
+    import Admin from "./Admin";
     export default {
         name: "app",
         components: {
-            LinkHeader
+            // LinkHeader,
+            Admin
 
 
         },

@@ -91,75 +91,75 @@
 </template>
 
 <script>
-import {  mdbSideNav, mdbSideNavNav, mdbSideNavCat, mdbSideNavItem } from 'mdbvue'
+  import { mdbContainer, mdbSideNav, mdbSideNavNav, mdbSideNavCat, mdbSideNavItem, mdbIcon, waves } from 'mdbvue'
 
-export default {
-  name: 'Dashboardv2',
-  props: {
-    waves: {
-      type: Boolean,
-      default: true
+  export default {
+    name: 'Dashboardv1',
+    props: {
+      waves: {
+        type: Boolean,
+        default: true
+      },
+      open: {
+        type: Boolean
+      }
     },
-    open: {
-      type: Boolean
-    }
-  },
-  components: {
-    // mdbContainer,
-    mdbSideNav,
-    mdbSideNavNav,
-    mdbSideNavCat,
-    mdbSideNavItem,
-    // mdbIcon,
-    // waves
-  },
-  data () {
-    return {
-      toggle: false,
-      active: 0,
-      elHeight: 0,
-      windowHeight: 0
-    }
-  },
-  methods: {
-    afterEnter (el) {
-      el.style.maxHeight = '1000px'
+    components: {
+      mdbContainer,
+      mdbSideNav,
+      mdbSideNavNav,
+      mdbSideNavCat,
+      mdbSideNavItem,
+      mdbIcon,
+      waves
     },
-    beforeLeave (el) {
-      el.style.maxHeight = 0
-    }
-  },
-  watch: {
-    // open (newVal) { // watch it
-    //   this.toggle = true
-    // }
-  },
-  // mixins: [ waves ]
-}
+    data () {
+      return {
+        toggle: false,
+        active: 0,
+        elHeight: 0,
+        windowHeight: 0
+      }
+    },
+    methods: {
+      afterEnter (el) {
+        el.style.maxHeight = '1000px'
+      },
+      beforeLeave (el) {
+        el.style.maxHeight = 0
+      }
+    },
+    watch: {
+      open (newVal) { // watch it
+        this.toggle = true
+      }
+    },
+    mixins: [ waves ]
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.side-nav .collapsible a {
-  color: #424242;
-}
+  .side-nav .collapsible a {
+    color: #424242;
+  }
 
-.collapse-side-nav-item {
-  overflow: hidden;
-  max-height: 0;
-  padding: 0;
-  transition: max-height .3s;
-}
-.collapse-side-nav-item a {
-  padding-left: 47px;
-  line-height: 36px;
-  background-color: rgba(0,0,0,.15);
-}
+  .collapse-side-nav-item {
+    overflow: hidden;
+    max-height: 0;
+    padding: 0;
+    transition: max-height .3s;
+  }
+  .collapse-side-nav-item a {
+    padding-left: 47px;
+    line-height: 36px;
+    background-color: rgba(0,0,0,.15);
+  }
 
 </style>
 
 <style>
-.side-nav .collapsible a {
-  font-size: 0.9rem !important;
-}
+  .side-nav .collapsible a {
+    font-size: 0.9rem !important;
+  }
 </style>
