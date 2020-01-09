@@ -6,6 +6,8 @@ module.exports = {
   env: {
     browser: true
   },
-  plugins: [],
+  plugins: [
+    'vue'
+  ],
   'rules': {}
 };
