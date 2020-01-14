@@ -10,7 +10,7 @@
             <!--Navbar-->
             <navbar :page="activePage" />
             <!--/Navbar-->
-
+            <hr>
             <!--MainContent-->
             <main>
                 <div class="pt-5">

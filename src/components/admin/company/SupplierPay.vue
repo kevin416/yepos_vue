@@ -3,6 +3,7 @@
         <section>
             <div class="card">
                 <div class="card-body">
+                    <search-input-form />
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -60,12 +61,13 @@
 <script>
     import axios from "axios";
     import {mdbContainer} from 'mdbvue'
-
+    import SearchInputForm from "../part/SearchInputForm";
 
     export default {
         name: "SupplierPay",
         components: {
             mdbContainer,
+            SearchInputForm
         },
         created() {
             this.viewPay();

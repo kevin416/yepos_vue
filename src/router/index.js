@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Cashout from "@/components/admin/Cashout";
+import Dashboard from "@/components/admin/Dashboard";
 import TimeTable from "@/components/admin/TimeTable";
 import EditLog from "@/components/admin/EditLog";
 import TableRecord from "@/components/admin/TableRecord";
@@ -12,7 +12,9 @@ import Employee from "@/components/admin/employee/Employee";
 import SupplierPay from "@/components/admin/company/SupplierPay";
 import Company from "@/components/admin/company/Company";
 import ProductRestaurant from "@/components/admin/product/ProductRestaurant";
-
+import Cashout from "../components/admin/Cashout";
+import OrderInventory from "../components/admin/OrderInventory";
+import ProductLibrary from "../components/admin/product/ProductLibrary";
 
 import NoFound from "@/components/NoFound";
 Vue.use(Router);
@@ -20,9 +22,9 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/cashout',
-      name: 'Cashout',
-      component: Cashout
+      path: '/',
+      name: 'Dashboard',
+      component: Dashboard
     },
     {
       path: '/table_record',
@@ -43,11 +45,6 @@ export default new Router({
       path: '/item_sale',
       name: 'ItemSale',
       component: ItemSale
-    },
-    {
-      path: '/dbm',
-      name: 'DBM',
-      component: TimeClockToday
     },
     {
       path: '/dbm',
@@ -78,6 +75,21 @@ export default new Router({
       path: '/product',
       name: 'ProductRestaurant',
       component: ProductRestaurant
+    },
+    {
+      path: '/product_library',
+      name: 'ProductLibrary',
+      component: ProductLibrary
+    },
+    {
+      path: '/cashout',
+      name: 'Cashout',
+      component: Cashout
+    },
+    {
+      path: '/order_inventory',
+      name: 'OrderInventory',
+      component: OrderInventory
     },
     {
       path: '*',

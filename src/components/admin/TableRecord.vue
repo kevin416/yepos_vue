@@ -14,10 +14,10 @@
                         </thead>
                         <tbody>
                         <tr v-bind:key="record.id" v-for="record in table_record">
-                            <th>{{ record.checkout_time }}</th>
-                            <th>{{ record.table_number }}</th>
-                            <th :class="{ by_credit: record.payment_method =='Credit' }">{{ record.total }}</th>
-                            <th>{{ record.username }}</th>
+                            <td>{{ record.checkout_time }}</td>
+                            <td>{{ record.table_number }}</td>
+                            <td :class="{ by_credit: record.payment_method =='Credit' }">{{ record.total }}</td>
+                            <td>{{ record.username }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -37,7 +37,7 @@
             mdbContainer,
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/today/table_record')
+            axios.get('https://api.pandabuffet.co.uk/api/today/table_record')
                 .then(res => this.table_record = res.data)
             // .catch(err => console.log(err))
         },

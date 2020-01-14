@@ -18,14 +18,16 @@
                         </thead>
 
                         <tbody>
-                        <tr v-bind:key="time.id" v-for="time in timeclock.table">
-                            <!--                                <th>{{ time.department }}</th>-->
-                            <th>{{ time.nick_name }}</th>
-                            <th>{{ time[timeclock.weekday]}}</th>
-                            <th>{{ timeclock.his_hours[time.st_id] }}</th>
-                            <th>{{ (timeclock.his_pay[time.st_id]).toFixed(2) }}</th>
-                            <th>{{ (timeclock.his_pay[time.st_id] * timeclock.his_hours[time.st_id]).toFixed(2)}}</th>
-                            <th>{{ time.note }}</th>
+                        <tr v-bind:key="time.id" v-for="time in timeclock.table" >
+                            <template v-if="time[timeclock.weekday] !=''">
+                                <td>{{ time.nick_name }}</td>
+                                <td>{{ time[timeclock.weekday]}}</td>
+                                <td>{{ timeclock.his_hours[time.st_id] }}</td>
+                                <td>{{ (timeclock.his_pay[time.st_id]).toFixed(2) }}</td>
+                                <td>{{ (timeclock.his_pay[time.st_id] * timeclock.his_hours[time.st_id]).toFixed(2)}}
+                                </td>
+                                <td>{{ time.note }}</td>
+                            </template>
                         </tr>
                         </tbody>
                     </table>
@@ -60,7 +62,18 @@
             }
 
         },
-
+        // computed: {
+        //     filteredData: function() {
+        //         return this.data.filter((items) => {
+        //             for (time in timeclock.table) {
+        //                 if(time[timeclock.wekday] !== '') {
+        //                     return true
+        //                 }
+        //             }
+        //             return false
+        //         })
+        //     }
+        // },
 
     }
 

@@ -1,70 +1,68 @@
 <template>
     <mdb-container fluid>
-        <mdb-card cascade narrow>
-            <mdb-view cascade class="gradient-card-header blue">
-                <h5 class="mb-0">
-                    {{ cashout.date + ' ' + cashout.income }}
-                </h5>
-            </mdb-view>
-            <mdb-card-body>
-                <mdb-doughnut-chart :data="pieChartData" :options="pieChartOptions"
-                                    :height="300"></mdb-doughnut-chart>
-            </mdb-card-body>
-        </mdb-card>
+        <section>
+            <div class="card">
+                <div class="card-body">
+                    <search-by-date-period-form/>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Cash</th>
+                            <th>Card</th>
+                            <th>Expense</th>
+                            <th>Wage</th>
+                            <th>Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-bind:key="week.id" v-for="week in cashout.cashout_week">
+                            <th>{{ week.week_num + ' ' + week.year_num}}</th>
+                            <th>{{ week.cash }}</th>
+                            <th>{{ week.credit }}</th>
+                            <th>{{ week.expense }}</th>
+                            <th>{{ week.wage }}</th>
+                            <th>{{ week.total }}</th>
+                        </tr>
+<!--                        <tr v-bind:key="cash.id" v-for="cash in cashout.cashout">-->
+<!--                            <td>{{ cash.date }}</td>-->
+<!--                            <td>{{ cash.cash }}</td>-->
+<!--                            <td>{{ cash.credit }}</td>-->
+<!--                            <td>{{ cash.expense }}</td>-->
+<!--                            <td>{{ cash.wage }}</td>-->
+<!--                            <td>{{ cash.total }}</td>-->
+<!--                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
     </mdb-container>
 </template>
 
 <script>
     import axios from "axios";
-    import {mdbContainer, mdbCard, mdbCardBody, mdbView, mdbDoughnutChart} from 'mdbvue'
+    import {mdbContainer} from 'mdbvue'
+    import SearchByDatePeriodForm from "./part/SearchByDatePeriodForm";
 
     export default {
         name: "Cashout",
         components: {
             mdbContainer,
-
-            mdbCard,
-            mdbCardBody,
-            mdbView,
-            mdbDoughnutChart,
-
+            SearchByDatePeriodForm
         },
         created() {
-            axios.get('https://api.pandabuffet.co.uk/api/cashout/today')
+            axios.get('http://127.0.0.1:8000/api/cashout')
                 .then(res => this.cashout = res.data)
-                .then(() => {
-                    this.pieChartData = {
-                        labels: ['Cash', 'Credit', 'Expense', 'Wage'],
-                        datasets: [
-                            {
-                                data: [this.cashout.cash, this.cashout.credit, this.cashout.expense, this.cashout.wage],
-                                backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
-                                hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#616774']
-                            }
-                        ]
-                    }
-                })
-
             // .catch(err => console.log(err))
         },
         data() {
             return {
                 cashout: [],
-                pieChartData: [],
-                pieChartOptions: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    legend: {
-                        labels: {
-                            fontColor: 'black'
-                        }
-                    }
-                }
             }
 
         },
-
-
     }
 </script>
 

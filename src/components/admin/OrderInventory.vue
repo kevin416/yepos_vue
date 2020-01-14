@@ -3,20 +3,24 @@
         <section>
             <div class="card">
                 <div class="card-body">
-                    <search-input-form />
+                    <h5 class="pt-3 mb-2 dark-grey-text font-weight-bold text-center"></h5>
+
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Qty</th>
+                            <th>Date</th>
+                            <th>Supplier</th>
                             <th>Total</th>
+                            <th>Comment</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-bind:key="item.id" v-for="item in item_sale">
-                            <th>{{ item.name }}</th>
-                            <th>{{ item.sum_qty }}</th>
-                            <th>{{ item.sum_total }}</th>
+                        <tr v-bind:key="order.id" v-for="order in order_inventory">
+                            <td>{{ order.order_date }}</td>
+                            <td>{{ order.company }}</td>
+                            <td>{{ order.total }}</td>
+                            <td>{{ order.comment }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -28,23 +32,22 @@
 
 <script>
     import axios from "axios";
-    import {mdbContainer} from 'mdbvue';
-    import SearchInputForm from "./part/SearchInputForm";
+    import {mdbContainer} from 'mdbvue'
 
     export default {
-        name: "ItemSale",
+        name: "OrderInventory",
         components: {
             mdbContainer,
-            SearchInputForm
         },
         created() {
-            axios.get('https://api.pandabuffet.co.uk/api/today/item_sale')
-                .then(res => this.item_sale = res.data)
+            axios.get('https://api.pandabuffet.co.uk/api/order_inventory')
+                .then(res => this.order_inventory = res.data)
+
             // .catch(err => console.log(err))
         },
         data() {
             return {
-                item_sale: [],
+                order_inventory: [],
             }
 
         },

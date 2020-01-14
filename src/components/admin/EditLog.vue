@@ -17,12 +17,12 @@
                         </thead>
                         <tbody>
                         <tr v-bind:key="log.id" v-for="log in edit_log">
-                            <th>{{ log.edit_time }}</th>
-                            <th>{{ log.table_number }}</th>
-                            <th>{{ log.code }}</th>
-                            <th>{{ log.qty }}</th>
-                            <th>{{ log.total }}</th>
-                            <th>{{ log.username }}</th>
+                            <td>{{ log.edit_time }}</td>
+                            <td>{{ log.table_number }}</td>
+                            <td>{{ log.code }}</td>
+                            <td>{{ log.qty }}</td>
+                            <td>{{ log.total }}</td>
+                            <td>{{ log.username }}</td>
 
                         </tr>
                         </tbody>
@@ -43,7 +43,7 @@
             mdbContainer,
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/today/edit_log')
+            axios.get('https://api.pandabuffet.co.uk/api/today/edit_log')
                 .then(res => this.edit_log = res.data)
             // .catch(err => console.log(err))
         },

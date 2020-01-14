@@ -3,6 +3,7 @@
         <section>
             <div class="card">
                 <div class="card-body">
+                    <search-input-form />
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -22,18 +23,17 @@
                         </thead>
                         <tbody>
                         <tr v-bind:key="pa.id" v-for="pa in paye">
-                            <th>{{ pa.date }}</th>
-                            <th>{{ pa.first_name + ' ' + pa.last_name }}</th>
-                            <th>{{ pa.nick_name }}</th>
-                            <th>{{ pa.pos }}</th>
-                            <th>{{ pa.hrs }}</th>
-                            <th>{{ pa.paye_salary }}</th>
-                            <th>{{ pa.cross }}</th>
-                            <th>{{ pa.tax_pay }}</th>
-                            <th>{{ pa.ni_pay }}</th>
-                            <th>{{ pa.pension }}</th>
-                            <th>{{ pa.net_pay }}</th>
-                            <th>{{ pa.note }}</th>
+                            <td>{{ pa.first_name + ' ' + pa.last_name }}</td>
+                            <td>{{ pa.nick_name }}</td>
+                            <td>{{ pa.pos }}</td>
+                            <td>{{ pa.hrs }}</td>
+                            <td>{{ pa.paye_salary }}</td>
+                            <td>{{ pa.cross }}</td>
+                            <td>{{ pa.tax_pay }}</td>
+                            <td>{{ pa.ni_pay }}</td>
+                            <td>{{ pa.pension }}</td>
+                            <td>{{ pa.net_pay }}</td>
+                            <td>{{ pa.note }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -44,15 +44,17 @@
 </template>
 <script>
     import axios from "axios";
-    import {mdbContainer} from 'mdbvue'
+    import {mdbContainer} from 'mdbvue';
+    import SearchInputForm from "./part/SearchInputForm";
 
     export default {
         name: "Paye",
         components: {
             mdbContainer,
+            SearchInputForm
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/paye')
+            axios.get('https://api.pandabuffet.co.uk/api/paye')
                 .then(res => this.paye = res.data)
             // .catch(err => console.log(err))
         },

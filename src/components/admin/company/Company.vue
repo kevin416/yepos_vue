@@ -3,6 +3,7 @@
         <section>
             <div class="card">
                 <div class="card-body">
+                <search-input-form />
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -36,12 +37,14 @@
 
 <script>
     import axios from "axios";
-    import {mdbContainer} from 'mdbvue'
+    import {mdbContainer} from 'mdbvue';
+    import SearchInputForm from "../part/SearchInputForm";
 
     export default {
         name: "Company",
         components: {
             mdbContainer,
+            SearchInputForm
         },
         created() {
             axios.get('http://127.0.0.1:8000/api/company')

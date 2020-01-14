@@ -3,6 +3,9 @@
         <section>
             <div class="card">
                 <div class="card-body">
+                    <search-input-form />
+                    <h5 class="pt-3 mb-2 dark-grey-text font-weight-bold text-center">{{ table.from_date + ' To ' + table.to_date }}</h5>
+
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -19,17 +22,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-bind:key="time.id" v-for="time in timetable">
-                            <th>{{ time.nick_name }}</th>
-                            <th>{{ time.sun }}</th>
-                            <th>{{ time.mon }}</th>
-                            <th>{{ time.tue }}</th>
-                            <th>{{ time.wed }}</th>
-                            <th>{{ time.thu }}</th>
-                            <th>{{ time.fri }}</th>
-                            <th>{{ time.sat }}</th>
-                            <th>{{ time.total_hour }}</th>
-                            <th>{{ time.note }}</th>
+                        <tr v-bind:key="time.id" v-for="time in table.time_table">
+                            <td>{{ time.nick_name }}</td>
+                            <td>{{ time.sun }}</td>
+                            <td>{{ time.mon }}</td>
+                            <td>{{ time.tue }}</td>
+                            <td>{{ time.wed }}</td>
+                            <td>{{ time.thu }}</td>
+                            <td>{{ time.fri }}</td>
+                            <td>{{ time.sat }}</td>
+                            <td>{{ time.total_hour }}</td>
+                            <td>{{ time.note }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -42,20 +45,23 @@
 <script>
     import axios from "axios";
     import {mdbContainer} from 'mdbvue'
+    import SearchInputForm from "./part/SearchInputForm";
 
     export default {
         name: "TimeTable",
         components: {
             mdbContainer,
+            SearchInputForm
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/time_table')
-                .then(res => this.timetable = res.data)
+            axios.get('https://api.pandabuffet.co.uk/api/time_table')
+                .then(res => this.table = res.data)
+
             // .catch(err => console.log(err))
         },
         data() {
             return {
-                timetable: [],
+                table: [],
             }
 
         },
