@@ -3,7 +3,7 @@
         <section>
             <div class="card">
                 <div class="card-body">
-                    <search-input-form />
+                    <search-input-form input-label="Search Company or Pay or Cheque" input-type="text" v-model="search"/>
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -19,7 +19,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-bind:key="pay.id" v-for="pay in supplier_pay.data">
+                        <tr v-bind:key="pay.id" v-for="pay in filterPay">
                             <th>{{ pay.company }}</th>
                             <th>{{ pay.from_date }}</th>
                             <th>{{ pay.to_date }}</th>
@@ -79,7 +79,8 @@
                 limit: 2,
                 showDisabled: false,
                 size: 'default',
-                align: 'left'
+                align: 'left',
+                search:''
             }
 
         },
@@ -90,9 +91,9 @@
         methods: {
 
             getResults(page = 1) {
-                axios.get('http://127.0.0.1:8000/api/company/payment?page=' + page)
+                axios.get('https://api.pandabuffet.co.uk/api/company/payment?page=' + page)
                     .then(response => {
-                        this.supplier_pay = response.data;
+                        this.supplier_pay = response.data.data;
                     });
             }
         },
@@ -104,7 +105,13 @@
                 }
             }
         },
-
+        computed: {
+            filterPay:function () {
+                return this.supplier_pay.filter((item)=>{
+                    return item.company.match(this.search) || item.pay.match(this.search) || item.ch_no.match(this.search);
+                });
+            }
+        }
         // methods: {
         //     viewPay(pagi){
         //         pagi = pagi || 'http://127.0.0.1:8000/api/company/payment';

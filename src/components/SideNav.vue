@@ -18,6 +18,7 @@
             <mdb-side-nav-item to="/company" @click.native="toggle=false">Company</mdb-side-nav-item>
             <mdb-side-nav-item to="/supplier_pay" @click.native="toggle=false">Supplier Pay</mdb-side-nav-item>
             <mdb-side-nav-item to="/order_inventory" @click.native="toggle=false">Order Inventory</mdb-side-nav-item>
+            <mdb-side-nav-item to="/analysis" @click.native="toggle=false">Analysis</mdb-side-nav-item>
 
           </mdb-side-nav-cat>
 

@@ -53,7 +53,7 @@
             SearchByDatePeriodForm
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/cashout')
+            axios.get('https://api.pandabuffet.co.uk/api/cashout')
                 .then(res => this.cashout = res.data)
             // .catch(err => console.log(err))
         },

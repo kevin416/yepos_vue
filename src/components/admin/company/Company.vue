@@ -3,7 +3,7 @@
         <section>
             <div class="card">
                 <div class="card-body">
-                <search-input-form />
+                <search-input-form input-type="text" input-label="Search Company" v-model="search"/>
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -17,7 +17,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-bind:key="com.id" v-for="com in company.data">
+                        <tr v-bind:key="com.id" v-for="com in filterCompany">
                             <th>{{ com.type }}</th>
                             <th>{{ com.sub_type }}</th>
                             <th>{{ com.company }}</th>
@@ -47,16 +47,24 @@
             SearchInputForm
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/company')
-                .then(res => this.company = res.data)
+            axios.get('https://api.pandabuffet.co.uk/api/company')
+                .then(res => this.company = res.data.data)
             // .catch(err => console.log(err))
         },
         data() {
             return {
                 company: [],
+                search:''
             }
 
         },
+        computed: {
+            filterCompany:function () {
+                return this.company.filter((item)=>{
+                    return item.company.match(this.search);
+                });
+            }
+        }
     }
 </script>
 

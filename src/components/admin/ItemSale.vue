@@ -14,9 +14,9 @@
                         </thead>
                         <tbody>
                         <tr v-bind:key="item.id" v-for="item in item_sale">
-                            <th>{{ item.name }}</th>
-                            <th>{{ item.sum_qty }}</th>
-                            <th>{{ item.sum_total }}</th>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.sum_qty }}</td>
+                            <td>{{ item.sum_total }}</td>
                         </tr>
                         </tbody>
                     </table>

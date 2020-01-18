@@ -3,7 +3,7 @@
         <section>
             <div class="card">
                 <div class="card-body">
-                    <search-input-form />
+                    <search-input-form input-label="Input a Saturday" input-type="date" v-model="search" />
                     <h5 class="pt-3 mb-2 dark-grey-text font-weight-bold text-center">{{ table.from_date + ' To ' + table.to_date }}</h5>
 
                     <table class="table table-hover">
@@ -56,15 +56,19 @@
         created() {
             axios.get('https://api.pandabuffet.co.uk/api/time_table')
                 .then(res => this.table = res.data)
+                .catch(error => console.log(error))
 
-            // .catch(err => console.log(err))
         },
         data() {
             return {
                 table: [],
+                search: '',
             }
 
         },
+        computed: {
+
+        }
     }
 </script>
 

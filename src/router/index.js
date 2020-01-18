@@ -14,7 +14,11 @@ import Company from "@/components/admin/company/Company";
 import ProductRestaurant from "@/components/admin/product/ProductRestaurant";
 import Cashout from "../components/admin/Cashout";
 import OrderInventory from "../components/admin/OrderInventory";
+import OrderInventoryDetail from "../components/admin/OrderInventoryDetail";
+
 import ProductLibrary from "../components/admin/product/ProductLibrary";
+import Analysis from "../components/admin/Analysis";
+
 
 import NoFound from "@/components/NoFound";
 Vue.use(Router);
@@ -90,6 +94,16 @@ export default new Router({
       path: '/order_inventory',
       name: 'OrderInventory',
       component: OrderInventory
+    },
+    {
+      path: '/order_inventory/:id',
+      name: 'OrderInventoryDetail',
+      component: OrderInventoryDetail
+    },
+    {
+      path: '/analysis',
+      name: 'Analysis',
+      component: Analysis
     },
     {
       path: '*',
